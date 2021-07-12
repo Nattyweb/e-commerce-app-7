@@ -1,4 +1,11 @@
 // Landing route for all request
+/* Home route = /   [GET]
+ * read all product = /products  [GET]
+ * read specific product = /products/id  [GET]
+ * create product = /create   [POST]
+ * update product = /update/id   [PUT]
+ * delete product = /delete/id   [DELETE]
+ */
 
 
 const express = require('express')
