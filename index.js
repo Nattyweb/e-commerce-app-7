@@ -13,8 +13,7 @@ const app = express()
 
 
 //parse body content
-app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.json())
 
 app.get('/', (req, res) => {
 	res.send('<h1>Welcome to Our Products Page. We have all kinds of goods that meet your taste</h1>')

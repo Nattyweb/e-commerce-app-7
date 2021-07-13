@@ -10,7 +10,7 @@ const createProduct = express.Router()
 createProduct.post('/', (req, res) => {
 
 	//check if the user entered the required data
-	if(!req.body.name || !req.body.desription || !req.body.price) {
+	if(!req.body.name || !req.body.description || !req.body.price) {
 		res.status(400).json({msg: "Enter the name, description and  the price of the product you want to add"})
 	}
 	else {

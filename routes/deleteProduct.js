@@ -9,13 +9,14 @@ deleteRecords.delete('/:id', (req, res) => {
 
 	//check whether product to be deleted is in array
 	
-	let found = products.some(product => product.id === parseInt(req.params.id));
+	let found = products.some(product => product.id == parseInt(req.params.id));
 
 	//if in array, filter out
 
 	if(found) {
-		products.filter(product => product.id != parseInt(req.params.id))
-		res.json({msg: "product deleted", products})
+		newProductsList = products.filter(product => product.id != parseInt(req.params.id))
+
+		res.json({msg: "product deleted", newProductsList})
 	}
 
 	//if not tell the user the product does not exist
