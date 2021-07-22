@@ -1,38 +1,30 @@
-// Landing route for all request
-/* Home route = /   [GET]
- * read all product = /products  [GET]
- * read specific product = /products/id  [GET]
- * create product = /create   [POST]
- * update product = /update/id   [PUT]
- * delete product = /delete/id   [DELETE]
- */
+
 
 
 const express = require('express')
 const app = express()
 
+const userRoutes = require('./routes/userRoutes')
+const productRoutes = require('./routes/productRoutes')
 
-//parse body content
+
+//body parser
 app.use(express.json())
 
+//home route
 app.get('/', (req, res) => {
-	res.send('<h1>Welcome to Our Products Page. We have all kinds of goods that meet your taste</h1>')
+	res.send('<h1>Welcome to Our Products Page. We have all kinds of goods that meet your taste. Visit /users/signin to login if you have registered or /users/signup to register.</h1>')
 })
 
-//read products routes
-app.use('/products', require('./routes/readProduct'))
+//user routes
+app.use('/user', userRoutes)
 
-//create products routes
-app.use('/create', require('./routes/createProduct'))
+//products routes
+app.use('/product', productRoutes)
 
-//update record of product route
-app.use('/update', require('./routes/updateProduct'))
-
-//delete product route
-app.use('/delete', require('./routes/deleteProduct'))
 
 //no matching routes
-app.get('/*', (req, res) => res.status(200).send('<h1>No marching url, check your url</h1>'))
+app.get('/*', (req, res) => res.status(200).send('<h1>No marching url, check your url and try again</h1>'))
 
 
 

@@ -1,19 +1,18 @@
-//a route to create a product and add to the arrayof produccts.
 
+//a controller to create new product
 const express = require('express')
-const products = require('../Products')
-const createProduct = express.Router()
+const products = require('../../models/Products')
 
 
-//create new product
-
-createProduct.post('/', (req, res) => {
+function createProduct(req, res, next) {
 
 	//check if the user entered the required data
 	if(!req.body.name || !req.body.description || !req.body.price) {
 		res.status(400).json({msg: "Enter the name, description and  the price of the product you want to add"})
+		return;
 	}
-	else {
+	
+	//if all required data are entered, create new product
 	let newProduct = {
 		id: products.length + 1,
 		name: req.body.name,
@@ -25,7 +24,8 @@ createProduct.post('/', (req, res) => {
 	products.push(newProduct);
 
 	res.status(200).json({msg: "product added", products})
+	
+	next()
 }
-});
 
 module.exports = createProduct
